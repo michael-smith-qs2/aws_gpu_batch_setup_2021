@@ -2,12 +2,20 @@
 
 # build, tag, and push to AWS ECR
 
+if [ $# -ge 1 ]
+then
+    echo "tag specified $1"
+    tag_read=$1
+else
+    echo "no tag specified. defaulting to latest"
+fi
+
 # prerequisites: docker (obviously), awscli configured, and a repo on ECR set up called 'awsgpu'
 
 docker_exec="docker"
 # docker_exec="sudo docker"  # depending on your setup you may want this
 
-tag="aws_gpu:latest"
+tag="aws_gpu:${tag_read}"
 
 $docker_exec build --tag $tag .
 
@@ -37,3 +45,5 @@ $docker_exec tag $tag "$amazon_url/$tag"
 echo "pushing..."
 $docker_exec push "$amazon_url/$tag"
 echo "done at `date`"
+
+
