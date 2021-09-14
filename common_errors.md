@@ -1,6 +1,4 @@
----
-
-Common Errors and Explanations
+# Common Errors and Explanations
 This section has details of the errors from permutations we tried, and apparent resolutions, should you encounter them.
 Docker errors
 Error: /bin/sh: pip: command not found
